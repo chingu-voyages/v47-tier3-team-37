@@ -1,3 +1,5 @@
+# JJ, Piero, Sean, Krishan
+
 # voyage-tasks
 
 Your project's `readme` is as important to success as your code. For 
