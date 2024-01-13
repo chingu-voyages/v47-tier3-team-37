@@ -1,14 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { noteData } from "./noteData";
+import { noteListData } from "./noteListData";
+import { NotesList } from "./NotesList";
+import { Note } from "./Note";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [activeNote, setActiveNote] = useState(noteData[0]);
 
   return (
     <>
-      <h1>Cornell Notes</h1>
+      <h1>Online Cornell Notes App</h1>
+
+      <div className="container">
+        <NotesList noteListData={noteListData} />
+        <Note noteData={noteData[0]} />
+      </div>
     </>
   );
 }
