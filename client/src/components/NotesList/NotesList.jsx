@@ -1,6 +1,8 @@
+import style from "./NotesList.module.css";
+
 export function NotesList({ noteListData }) {
   return (
-    <div className="notesList">
+    <div className={style.notesList}>
       <ul>
         {noteListData.map((note, index) => {
           return (
