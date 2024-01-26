@@ -9,13 +9,28 @@ function NotesView() {
   const [count, setCount] = useState(0);
   const [activeNote, setActiveNote] = useState(noteData[0]);
 
+  function handleCreateNewNote() {}
+
+  function handleNoteSelection(noteId) {
+    console.log("Nte ID", noteId);
+    setActiveNote(
+      noteData.find((note) => {
+        return note.id === noteId;
+      })
+    );
+  }
+
   return (
     <>
       <h1>Online Cornell Notes App</h1>
 
       <div className={style.container}>
-        <NotesList noteListData={noteListData} />
-        <Note noteData={noteData[0]} />
+        <NotesList
+          noteListData={noteListData}
+          handleCreateNewNote={handleCreateNewNote}
+          handleNoteSelection={handleNoteSelection}
+        />
+        <Note noteData={activeNote} />
       </div>
     </>
   );
