@@ -12,10 +12,10 @@ export function NotesList({
         <li className={style.noteElement} onClick={handleCreateNewNote}>
           Create a New Note
         </li>
-        {noteListData.map((note, index) => {
+        {noteListData.map((note) => {
           return (
             <li
-              key={index}
+              key={note.id}
               className={style.noteElement}
               onClick={() => handleNoteSelection(note.id)}
             >

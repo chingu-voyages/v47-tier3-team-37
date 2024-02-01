@@ -12,7 +12,7 @@ function NotesView() {
   function handleCreateNewNote() {}
 
   function handleNoteSelection(noteId) {
-    console.log("Nte ID", noteId);
+    console.log("Note ID", noteId);
     setActiveNote(
       noteData.find((note) => {
         return note.id === noteId;
