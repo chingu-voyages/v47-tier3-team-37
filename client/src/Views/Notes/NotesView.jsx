@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { noteData } from "../../assets/noteData";
-import { noteListData } from "../../assets/noteListData";
 import { NotesList } from "../../components/NotesList/NotesList";
 import { Note } from "../../components/Note/Note";
 import style from "./NotesView.module.css";
@@ -26,7 +25,7 @@ function NotesView() {
 
       <div className={style.container}>
         <NotesList
-          noteListData={noteListData}
+          noteData={noteData}
           handleCreateNewNote={handleCreateNewNote}
           handleNoteSelection={handleNoteSelection}
         />
