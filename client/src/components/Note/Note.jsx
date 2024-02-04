@@ -1,6 +1,7 @@
 import style from "./Note.module.css";
 
 export function Note({ noteData }) {
+  console.log(noteData);
   return (
     <div className={style.fullNote}>
       <div className={style.topSection}>

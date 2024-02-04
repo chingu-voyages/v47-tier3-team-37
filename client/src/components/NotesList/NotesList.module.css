@@ -1,6 +1,15 @@
 .notesList {
-    font-size: 14px;
-    width: 300px;
-    text-align: left;
-    border: 1px solid #ccc;
-  }
+  font-size: 14px;
+  width: 300px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.noteElement {
+  border: 2px solid lightpink;
+  background-color: silver;
+}
+.noteElement:hover {
+  border: 2px solid lightpink;
+  opacity: 0.7;
+}
