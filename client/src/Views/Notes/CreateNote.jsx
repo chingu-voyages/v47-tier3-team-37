@@ -13,50 +13,54 @@ const CreateNote = () => {
     // need to create function to handle submit and updates on this page (maybe add some sort of flag to show whether its a update or new note)
 
     return (
-        <div>
-
-            <h1>Add Note</h1>
-
-            {/* need to handle onSubmit */}
-            <form>
-                <div className={style.column}>
-                    <label for='title'>Title</label>
-                    <input
+        <div className={style.container}>
+            <div className={style.fullNote}>
+                <div className={style.topSection}>
+                    <div className={style.nameDate}>
+                        <div>
+                            Name: <input type="text" value=""></input>
+                        </div>
+                        <div> Date: </div>
+                    </div>
+                    <p>Essential Question: <input type="text" value={note.title}></input> </p>
+                </div>
+                <div className={style.middleSection}>
+                    <div className={style.questions}>
+                        <textarea
+                            name="question"
+                            id="question"
+                            cols="30"
+                            rows="10"
+                            placeholder='write questions here...'
+                            required
+                        >
+                        </textarea>
+                    </div>
+                    <div className={style.noteBody}>
+                        <textarea
+                            name="content"
+                            id="content"
+                            cols="30"
+                            rows="10"
+                            placeholder='write notes here...'
+                            value={note.content}
+                            required
+                        >
+                        </textarea>
+                    </div>
+                </div>
+                <div className={style.summary}>
+                    <p>Summary: </p>
+                    <textarea
                         type="text"
-                        name='title'
-                        id='title'
-                        value={note.title}
-                        required
-                    />
-                </div>
-                <div className={style.column}>
-                    <label for='content'>Content</label>
-                    <textarea
                         cols="30"
                         rows="10"
-                        name='content'
-                        id='content'
-                        value={note.content}
-                        required
-                    ></textarea>
-                </div>
-                <div className={style.column}>
-                    <label for='summary'>Summary</label>
-                    <textarea
-                        cols="30"
-                        rows="10"
-                        name='summary'
-                        id='summary'
                         value={note.summary}
                         required
-                    ></textarea>
+                    >
+                    </textarea>
                 </div>
-
-                {/* can have another button for updates (so we can update time updated) */}
-                <div className={style.button}>
-                    <button>Add Note</button>
-                </div>
-            </form>
+            </div>
         </div>
     );
 }
