@@ -1,4 +1,4 @@
-export const noteData = [
+export const noteDataFromFile = [
   {
     id: 1,
     date: "01-11-2024",
