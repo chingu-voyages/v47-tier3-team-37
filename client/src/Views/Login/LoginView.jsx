@@ -1,13 +1,41 @@
+import axios from "axios";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
 import style from "./LoginView.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function LoginView() {
+  const navigate = useNavigate();
   const [dataLogin, setDataLogin] = useState({
     email: "",
     password: "",
   });
+
+  const onInputChange = (event) => {
+    event.preventDefault();
+
+    setDataLogin({
+      ...dataLogin,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const onSubmitFunction = async (event) => {
+    event.preventDefault();
+    alert("Login Success");
+
+    const data = {
+      email: dataLogin.email,
+      password: dataLogin.password,
+    };
+    axios.post("http://localhost:8080/users/login", data).then(() => {
+      alert("You have successfully logged in!")
+    }).catch((err) => {
+      console.log(err);
+    })
+    navigate("/v47-tier3-team-37/notes");
+  }
 
   const googleHandler = () => {};
 
@@ -27,11 +55,13 @@ function LoginView() {
       </div>
 
       <div className={style.form}>
-        <form>
+        <form onSubmit={onSubmitFunction}>
           <input
             className={style.input}
             name="email"
             type="email"
+            value={dataLogin.email}
+            onChange={onInputChange}
             placeholder="Email"
             required
           />
@@ -39,6 +69,8 @@ function LoginView() {
             className={style.input}
             name="password"
             type="password"
+            value={dataLogin.password}
+            onChange={onInputChange}
             placeholder="Password"
             required
           />

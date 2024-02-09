@@ -1,13 +1,50 @@
+import axios from "axios";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
 import style from "./RegisterView.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function RegisterView() {
-  const [dataLogin, setDataLogin] = useState({
+  const navigate = useNavigate();
+  const [dataRegister, setDataRegister] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+
+  const onInputChange = (event) => {
+    event.preventDefault();
+
+    setDataRegister({
+      ...dataRegister,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const onSubmitFunction = (event) => {
+    event.preventDefault();
+    if (dataRegister.password !== dataRegister.confirmPassword) {
+      alert("Password and Confirm Password must be same");
+      return;
+    }
+
+    const data = {
+      firstName: dataRegister.firstName,
+      lastName: dataRegister.lastName,
+      email: dataRegister.email,
+      password: dataRegister.password,
+    };
+    console.log(data);
+    axios.post("http://localhost:8080/users/register", data).then(() => {
+      alert("Good job!, you have successfully registered")
+    }).catch((err) => {
+      console.log(err);
+    })
+    navigate("/v47-tier3-team-37/login");
+  };
 
   const googleHandler = () => {};
 
@@ -30,25 +67,31 @@ function RegisterView() {
       </div>
 
       <div className={style.form}>
-        <form>
+        <form onSubmit={onSubmitFunction}>
           <input
             className={style.input}
-            name="name"
+            name="firstName"
             type="text"
+            value={dataRegister.firstName}
+            onChange={onInputChange}
             placeholder="Name"
             required
           />
           <input
             className={style.input}
-            name="lastname"
+            name="lastName"
             type="text"
-            placeholder="Lastname"
+            value={dataRegister.lastName}
+            onChange={onInputChange}
+            placeholder="Last name"
             required
           />
           <input
             className={style.input}
             name="email"
             type="email"
+            value={dataRegister.email}
+            onChange={onInputChange}
             placeholder="Email"
             required
           />
@@ -56,13 +99,17 @@ function RegisterView() {
             className={style.input}
             name="password"
             type="password"
+            value={dataRegister.password}
+            onChange={onInputChange}
             placeholder="Password"
             required
           />
           <input
             className={style.input}
-            name="password"
+            name="confirmPassword"
             type="password"
+            value={dataRegister.confirmPassword}
+            onChange={onInputChange}
             placeholder="Confirm Password"
             required
           />
